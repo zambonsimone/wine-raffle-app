@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import type { ITicket } from "../api/ticketsApi";
+import type { ITicket } from "../api/models";
 
 interface ITicketProps {
     ticket: ITicket;
@@ -30,7 +30,7 @@ export const Ticket: React.FC<ITicketProps> = ({
             disabled={reserved}
             onClick={onClick}
         >
-            <span className="inline-flex items-center justify-center border w-full h-full">{id}</span>
+            <span className="inline-flex items-center justify-center border border-dashed w-full h-full">{id}</span>
         </button>
     )
 }

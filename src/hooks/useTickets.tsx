@@ -1,8 +1,8 @@
 import { useCallback, useEffect } from "react";
-import type { ITicket } from "../api/ticketsApi";
 import { useTicketsStore } from "../state/useTicketStore";
+import type { ITicket } from "../api/models";
 
-export function usePurchaseTickets() {
+export function useTickets() {
     const { reserveTicket, fetchTickets } = useTicketsStore();
 
     const purchaseTickets = useCallback(async (selection: ITicket[]) => {

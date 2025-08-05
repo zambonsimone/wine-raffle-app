@@ -1,4 +1,4 @@
-import type { ITicket } from "../api/ticketsApi";
+import type { ITicket } from "../api/models";
 import { useTicketsStore } from "../state/useTicketStore";
 import { Ticket } from "./Ticket";
 

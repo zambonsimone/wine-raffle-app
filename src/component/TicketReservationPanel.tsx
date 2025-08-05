@@ -2,13 +2,13 @@ import { useCallback, useRef, useState } from "react";
 import { ReceiptModal } from "./ReceiptModal";
 import { PurchaseButton } from "./PurchaseButton";
 import { TicketList } from "./TicketList";
-import { usePurchaseTickets } from "../hooks/usePurchaseTicket";
-import type { ITicket } from "../api/ticketsApi";
+import { useTickets } from "../hooks/useTickets";
+import type { ITicket } from "../api/models";
 
 export const TicketReservationPanel: React.FC = () => {
     const [selection, setSelection] = useState<ITicket[]>([]);
     const receiptModalRef = useRef<HTMLDialogElement>(null);
-    const { purchaseTickets } = usePurchaseTickets();
+    const { purchaseTickets } = useTickets();
 
     const selectTicket = useCallback((selectedTicket: ITicket) => {
         const newSelection = [...selection];

@@ -1,0 +1,1 @@
+export const API_BASE = "https://6891e9cb447ff4f11fbe4d37.mockapi.io/raffle-tickets";

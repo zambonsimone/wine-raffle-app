@@ -1,5 +1,5 @@
 import { forwardRef, useImperativeHandle, useRef } from "react";
-import type { ITicket } from "../api/ticketsApi";
+import type { ITicket } from "../api/models";
 
 interface IReceiptModalProps {
     purchased: ITicket[];
