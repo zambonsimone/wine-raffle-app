@@ -1,25 +1,35 @@
 import { create } from 'zustand';
-
-export interface ITicket {
-    id: number;
-    reserved: boolean;
-};
+import { getTickets, reserve, type ITicket } from '../api/ticketsApi';
 
 interface IState {
     tickets: ITicket[];
-    myTickets: ITicket[];
 }
 
 interface IStore extends IState {
-  setTickets: (tickets: ITicket[]) => void;
+    fetchTickets: () => Promise<void>;
+    reserveTicket: (ticket: ITicket) => Promise<void>;
 };
 
 const INITIAL_STATE: IState = {
-    tickets: Array.from({ length: 100 }, (_,i) => ({ id: i, reserved: false })),
-    myTickets: []
+    tickets: [],
 }
 
 export const useTicketsStore = create<IStore>((set) => ({
-  ...INITIAL_STATE,
-  setTickets: (tickets) => set({ tickets }),
+    ...INITIAL_STATE,
+    fetchTickets: async () => {
+        try {
+            const tickets = await getTickets();
+            set({ tickets });
+        } catch {
+            console.error("Tickets fetch failed")
+        }
+    },
+    reserveTicket: async (ticket: ITicket) => {
+        try {
+            await reserve({ ...ticket, reserved: true }); 
+        } catch (err) {
+            console.error("Ticket purchase failed");
+            console.log(err);
+        }
+    },
 }));

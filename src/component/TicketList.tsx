@@ -1,4 +1,5 @@
-import { useTicketsStore, type ITicket } from "../state/useTicketStore";
+import type { ITicket } from "../api/ticketsApi";
+import { useTicketsStore } from "../state/useTicketStore";
 import { Ticket } from "./Ticket";
 
 interface ITicketListProps {

@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import type { ITicket } from "../state/useTicketStore";
+import type { ITicket } from "../api/ticketsApi";
 
 interface ITicketProps {
     ticket: ITicket;
