@@ -5,16 +5,24 @@ import { Ticket } from "./Ticket";
 interface ITicketListProps {
     currentSelection: ITicket[];
     onSelectTicket: (selectedTicket: ITicket) => void;
+    loading: boolean;
 }
+
+const gridMobile = "grid-cols-[repeat(4,_minmax(0,_6rem))]";
+const gridTablet = "grid-cols-[repeat(5,_minmax(0,_6rem))]";
+const gridDesktop = "grid-cols-[repeat(6,_minmax(0,_6rem))]";
+const gridFull = "grid-cols-[repeat(8,_minmax(0,_6rem))]";
+const gridResponsiveTemplate = `grid ${gridMobile} lg:${gridFull} md:${gridDesktop} sm:${gridTablet} gap-[2vw]`;
 
 export const TicketList: React.FC<ITicketListProps> = ({
     currentSelection,
-    onSelectTicket
+    onSelectTicket,
+    loading
 }) => {
     const { tickets } = useTicketsStore();
-    
+
     return (
-        <div className="grid grid-cols-[repeat(4,_minmax(0,_6rem))] lg:grid-cols-[repeat(8,_minmax(0,_6rem))] md:grid-cols-[repeat(6,_minmax(0,_6rem))] sm:grid-cols-[repeat(5,_minmax(0,_6rem))] gap-[2vw]">
+        <div className={`${gridResponsiveTemplate} ${loading ? "opacity-30" : ""}`}>
             { tickets.map(ticket => (
                 <Ticket 
                     ticket={ticket} 
