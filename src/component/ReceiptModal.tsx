@@ -1,10 +1,13 @@
 import { forwardRef, useImperativeHandle, useRef } from "react";
 import type { ITicket } from "../api/models";
+import { LABELS } from "../labels";
 
 interface IReceiptModalProps {
     purchased: ITicket[];
     onClose: () => void
 }
+
+const { RECEIPT_ITEM, RECEIPT_TITLE } = LABELS.PURCHASE;
 
 /**
  * Modal component that shows the receipt for the purchased tickets after the purchase has been performed successfully.
@@ -27,11 +30,11 @@ export const ReceiptModal = forwardRef<HTMLDialogElement, IReceiptModalProps>(({
             <button className="border px-[0.4rem] block text-3xl ml-auto cursor-pointer" onClick={() => modalRef?.current?.close()}>
                 X
             </button>
-            <span className="block text-2xl font-bold uppercase text-center tracking-wide">Receipt</span>
+            <span className="block text-2xl font-bold uppercase text-center tracking-wide">{RECEIPT_TITLE}</span>
             <ul>
                 { purchased.map(tkt => (
                     <li key={tkt.id}>
-                        <span>Ticket N. <strong>#{tkt.id}</strong></span>
+                        <span>{RECEIPT_ITEM}<strong> #{tkt.id}</strong></span>
                     </li>
                 ))}
             </ul>

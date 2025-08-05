@@ -1,4 +1,7 @@
-import type React from "react"
+import type React from "react";
+import { LABELS } from "../labels";
+
+const { AVAILABLE, NOT_AVAILABLE, SELECTED } = LABELS.DEFINITION_LIST;
 
 const ColorSample: React.FC<{ color: string }> = ({
     color
@@ -8,21 +11,22 @@ const ColorSample: React.FC<{ color: string }> = ({
     )
 }
 
+const itemClassName = "flex text-1xl font-normal gap-[1rem] items-center uppercase";
+
 export const DefinitionList: React.FC = () => {
-    const itemClassName = "flex text-1xl font-normal gap-[1rem] items-center uppercase"
     return (
         <dl className="my-[2rem]">
             <div role="presentation" className={itemClassName}>
                 <dt><ColorSample color="red"/></dt>
-                <dd>NOT Available</dd>
+                <dd>{NOT_AVAILABLE}</dd>
             </div>
             <div role="presentation" className={itemClassName}>
                 <dt><ColorSample color="green"/></dt>
-                <dd>Available</dd>
+                <dd>{AVAILABLE}</dd>
             </div>
             <div role="presentation" className={itemClassName}>
                 <dt><ColorSample color="blue"/></dt>
-                <dd>Selected</dd>
+                <dd>{SELECTED}</dd>
             </div>
         </dl>
     )

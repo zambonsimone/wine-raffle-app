@@ -27,6 +27,7 @@ export const TicketReservationPanel: React.FC = () => {
             <PurchaseButton 
                 selectedTicketsAmount={currentSelection.length} 
                 startPurchase={purchase}
+                loading={loading}
             />
             <ReceiptModal 
                 ref={receiptModalRef} 
