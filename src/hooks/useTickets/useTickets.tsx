@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
-import { useTicketsStore } from "../state/useTicketStore";
-import type { ITicket } from "../api/models";
+import { useTicketsStore } from "../../state/useTicketStore";
+import type { ITicket } from "../../api/models";
 
 /**
 *   Fetches the ticket list on mount

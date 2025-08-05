@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import type { ITicket } from "../api/models";
+import type { ITicket } from "../../api/models";
 
 /**
 *   Handle the temporary selection of the tickets
@@ -20,6 +20,7 @@ export function useSelectTickets(): {
         const selectedTicketIndex = newSelection.indexOf(selectedTicket);
         if (selectedTicketIndex > -1) newSelection.splice(selectedTicketIndex,1);
         else newSelection.push(selectedTicket); 
+        console.log(selectedTicket, newSelection);
         setCurrentSelection(newSelection);
     },[currentSelection])
 

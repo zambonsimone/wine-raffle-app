@@ -2,8 +2,8 @@ import { useCallback, useRef } from "react";
 import { ReceiptModal } from "./ReceiptModal";
 import { PurchaseButton } from "./PurchaseButton";
 import { TicketList } from "./TicketList";
-import { useTickets } from "../hooks/useTickets";
-import { useSelectTickets } from "../hooks/useSelectTickets";
+import { useTickets } from "../hooks/useTickets/useTickets";
+import { useSelectTickets } from "../hooks/useSelectTickets/useSelectTickets";
 import { Loading } from "./Loading";
 
 export const TicketReservationPanel: React.FC = () => {
