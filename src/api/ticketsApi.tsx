@@ -5,7 +5,7 @@ import type { ITicket } from "./models";
  *  Fetches the ticket list from mockapi.io
  *  @returns {Promise<ITicket[]>} A promise that resolves with an array of ITicket
  */
-export async function getTickets(): Promise<ITicket> {
+export async function getTickets(): Promise<ITicket[]> {
     const response = await fetch(`${API_BASE}/tickets`, {
         method: "GET"
     });

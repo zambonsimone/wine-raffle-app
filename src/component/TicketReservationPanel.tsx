@@ -1,42 +1,32 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useRef } from "react";
 import { ReceiptModal } from "./ReceiptModal";
 import { PurchaseButton } from "./PurchaseButton";
 import { TicketList } from "./TicketList";
 import { useTickets } from "../hooks/useTickets";
-import type { ITicket } from "../api/models";
 
 export const TicketReservationPanel: React.FC = () => {
-    const [selection, setSelection] = useState<ITicket[]>([]);
     const receiptModalRef = useRef<HTMLDialogElement>(null);
-    const { purchaseTickets } = useTickets();
-
-    const selectTicket = useCallback((selectedTicket: ITicket) => {
-        const newSelection = [...selection];
-        const selectedTicketIndex = newSelection.indexOf(selectedTicket);
-        if (selectedTicketIndex > -1) newSelection.splice(selectedTicketIndex,1);
-        else newSelection.push(selectedTicket); 
-        setSelection(newSelection);
-    },[selection])
+    const { purchaseTickets, selectTicket, currentSelection, clearSelection } = useTickets();
 
     const purchase = useCallback(async () => {
+        await purchaseTickets(currentSelection);
         receiptModalRef.current?.showModal();
-        purchaseTickets(selection);
-    },[purchaseTickets, selection])
+    },[purchaseTickets, currentSelection])
     
     return (
         <div className="mx-auto w-fit flex flex-col items-center">
             <TicketList 
-                currentSelection={selection}
+                currentSelection={currentSelection}
                 onSelectTicket={selectTicket}
             />
             <PurchaseButton 
-                selectedTicketsAmount={selection.length} 
+                selectedTicketsAmount={currentSelection.length} 
                 startPurchase={purchase}
             />
             <ReceiptModal 
                 ref={receiptModalRef} 
-                purchased={selection}
-                clearSelection={() => setSelection([])}
+                purchased={currentSelection}
+                onClose={clearSelection}
             />
         </div>
     )
