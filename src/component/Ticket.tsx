@@ -26,11 +26,11 @@ export const Ticket: React.FC<ITicketProps> = ({
     return (
         <button
             key={id}
-            className={`p-2 rounded text-white ${bgColor}`}
+            className={`cursor-pointer p-2 text-grey ${bgColor} font-mono w-full h-[3rem] justify-self-center ${reserved ? "pointer-events-none" : ""} border border-transparent hover:border-blue-400 border-[0.1rem] shadow-md`}
             disabled={reserved}
             onClick={onClick}
         >
-            {id}
+            <span className="inline-flex items-center justify-center border w-full h-full">{id}</span>
         </button>
     )
 }

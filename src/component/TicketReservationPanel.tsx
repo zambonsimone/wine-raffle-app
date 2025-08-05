@@ -24,7 +24,7 @@ export const TicketReservationPanel: React.FC = () => {
     },[purchaseTickets, selection])
     
     return (
-        <div>
+        <div className="mx-auto w-fit flex flex-col items-center">
             <TicketList 
                 currentSelection={selection}
                 onSelectTicket={selectTicket}
