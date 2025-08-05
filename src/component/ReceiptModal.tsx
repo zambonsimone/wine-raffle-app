@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, useImperativeHandle, useRef } from "react";
 import type { ITicket } from "../api/ticketsApi";
 
 interface IReceiptModalProps {
@@ -10,11 +10,25 @@ export const ReceiptModal = forwardRef<HTMLDialogElement, IReceiptModalProps>(({
     purchased,
     clearSelection
 }, ref) => {
+
+    const modalRef = useRef<HTMLDialogElement>(null);
+    // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
+    useImperativeHandle(ref, () => modalRef?.current!);
+
     return (
-        <dialog ref={ref} className="" onClose={clearSelection}>
-            { purchased.map(tkt => (
-                <div>{tkt.id}</div>
-            ))}
+        <dialog ref={modalRef} className="p-[2rem] pt-[1rem] w-full max-w-[30rem] m-auto" onClose={clearSelection}>
+            <button className="border px-[0.4rem] block text-3xl ml-auto cursor-pointer" onClick={() => modalRef?.current?.close()}>
+                X
+            </button>
+            <span className="block text-2xl font-bold uppercase text-center tracking-wide">Receipt</span>
+            <ul>
+                { purchased.map(tkt => (
+                    <li >
+                        <span>Ticket N. <strong>#{tkt.id}</strong></span>
+                    </li>
+                ))}
+            </ul>
+            
         </dialog>
     )
 })
