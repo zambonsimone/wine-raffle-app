@@ -18,7 +18,7 @@ export const Ticket: React.FC<ITicketProps> = ({
     },[onSelect, ticket])
 
     const bgColor = reserved 
-        ? "bg-red-400"
+        ? "bg-red-400 opacity-50"
         : isSelected
             ? "bg-blue-400"
             : "bg-green-400"
